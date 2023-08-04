@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog 1</title>
+    {%load static%}
+</head>
+<body>
+    <h1>Bienvenidos a mi blog</h1>
+    <section>
+        {% for elemento in Blog_Python %}
+            <article>
+                <h3>{{  elemento.nombre }}</h3>
+                <p>
+                    {{elemento.contenido}}
+                </p>
+                <img src="{{elemento.imagen}}">
+                <footer>
+                    Autor: {{ elemento.autor }}
+                </footer>
+            </article>
+        {% endfor %}
+        </section>
+        <section>
+            <form action="" method="post">
+                {% csrf_token %}
+                <h2>Comunicate con nosotros</h2>
+                <input type="text" name="nombre" placeholder="Tu nombre"> <br>
+                Tu mensaje:  <br>
+                <textarea name ="mensaje">
+
+                </textarea> <br>
+                <input type="submit" name="enviar" value="Enviar comentario">
+                {% if mensaje %}
+            <h2>{{mensaje}}</h2>
+                {% endif %}
+            </form>
+        </section>
+</body>
+</html>
